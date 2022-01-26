@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
@@ -113,11 +113,25 @@ import './index.css';
     }
     return null;
   }
+
+  function Counter(props) {
+      const [count, setCount] = useState(props.initialValue);
+      return (<div>
+      Count: {count}
+      <button onClick={()=>setCount(props.initialValue)}>Reset</button>
+      <button onClick={()=>setCount(prevCount=>prevCount-1)}>-</button>
+      <button onClick={()=>setCount(prevCount=>prevCount+1)}>+</button>
+      </div>)
+  }
   
   // ========================================
   
   ReactDOM.render(
-    <Game />,
+      <div>
+        <Game />
+        <Counter initialValue={10}/>
+      </div>,
+    
     document.getElementById('root')
   );
   
